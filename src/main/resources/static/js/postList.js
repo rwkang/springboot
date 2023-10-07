@@ -6,7 +6,11 @@
 "use strict";
 
 async function getPostList() {
+    // let response = await fetch("http://localhost:8080/users/signin");
     let response = await fetch("http://localhost:8080/posts/list");
+    // let response = await fetch("http://192.168.0.8:8080/posts/list");
+
+    console.log("response: " + response);
 
     // 1.Spring Boot에서 가져온 데이터를 그대로 뿌리기
     // let data = await response.text(); // 일반 문자열 임에 주의 : 보이는 것은 "JSON" 형식 같이 보이지만...

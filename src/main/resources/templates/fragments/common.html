@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(title)">
+  <!-- Required meta tags -->
+  <meta http_equiv="Content-Type" content="text/html" charset="UTF-8"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<!--  thymeleaf에서는 경로를 지정할 수 있는데, 주의할 것은 컨텍스트 루트(static) 폴더부터 시작한다는 것이다. 아래 [../]와 동일한 의미이다.-->
+<!--  <link href="../css/starter-template.css" rel="stylesheet"> 이것도 가능 -->
+  <link href="../css/starter-template.css" th:href="@{/css/starter-template.css}" rel="stylesheet">
+<!--  <link href="starter-template.css" th:href="@{/css/starter-template.css}" rel="stylesheet"> 이렇게도 위와 동일함-->
+
+  <title th:text="${title}">Clarus</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:fragment="navtop(menu)">
+
+  <img id="logo_img" class="logo_img" src="/images/logo-removebg.png">
+
+  <a class="navbar-brand" href="#">&nbsp;&nbsp; Clarus!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+          aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+<!--      <li class="nav-item active">-->
+      <li class="nav-item" th:classappend="${menu == 'home'} ? 'active'">
+        <a class="nav-link" href="#" th:href="@{/}">홈 <span class="sr-only" th:if="${menu == 'home'}">(current)</span></a>
+      </li>
+      <li class="nav-item" th:classappend="${menu == 'post'} ? 'active'">
+        <a class="nav-link" href="#" th:href="@{/post/list}">게시판</a> <span class="sr-only" th:if="${menu == 'post'}">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" arial-disabled="true">Disabled</a>
+      </li>
+      <li class="nav-item-dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+</body>
+
+</html>

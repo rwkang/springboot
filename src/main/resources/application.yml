@@ -1,46 +1,52 @@
-spring:
-  cassandra:
-    port: 8080
+# 2023.09.25 Conclusion. 여기서는 "라우터" 기능만 하고,
+# "local", "dev", "prod", 즉, "local=로컬 컴퓨터=H2 DB", "dev=개발용 서버=MySQL", "prod=운영 서버=Oracle" 이렇게 구분하여,
+# .yml 파일을 관리한다.
 
 ---
 spring:
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-      path: /h2-console
-  datasource:
-    url: jdbc:h2:~/test;
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    open-in-view: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-        show-sql: true
-        format-sql: true
-    hibernate:
-      ddl-auto: create-drop
-
-# 2023.09.25 Conclusion. 아래 "MySql" DB를 연결하게 되면, 위의 "H2" DB 연결이 안 되어,
-# "http://localhost:8080/h2-console" 연결할 때, 아래와 같은 에러가 발생한다.
-# => Error
-# Database "C:/Users?Administrator/test" not found, either pre-create it or allow remote database creation (not recommended in secure environments) [90149-224] 90149/90149 (Help)
+  profiles:
+    active: prod
+    # 위의 "local", "dev", "prod" 위에 "공백"이 있으면, 에러 나는 경우도 있다.
 
 ---
-## MySql DB
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+
+
+
+# 2023.09.27 IT 늦공 application.yml
+
+#--- # Start
+#
+#--- # change port
+#server:
+#  port: 8085
+#
+#--- # mvc view
+#spring:
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views
+#      suffix: .jsp
+#
+#--- # devtools
+#spring:
+#  devtools:
+#    livereload:
+#      enabled: true
+#    restart:
+#      enabled: false
+#
+#---  #oracle settings
 #spring:
 #  datasource:
-#    #    mysql: => ***** 여기 라인이 들어 가면 절대 안 됨: 에러 발생: 들여쓰기는 상관이 없네 *****
-#    # 2023.07.21 Conclusion. 여기서 에러나면, cmd/services.msc/MySQL/RB:시작 =====> 구동시켜야 된다.
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/powerapp?serverTimezone=UTC&characterEncoding=UTF-8
-#    username: "sa"
-#    password: "*963210z" # 비밀 번호가 [특수 문자]로 시작할 때는 반드시 따옴표로 묶어줘야 한다.
-#    # 여기 따옴표도 에러 남: url: jdbc:mysql://localhost:3306/"powerppsc"?serverTimezone=UTC&characterEncoding=UTF-8
-#    # 2023.07.21 Conclusion. 여기서 에러나면, cmd/services.msc/MySQL/RB:시작 =====> 구동시켜야 된다.
-
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    url: jdbc:oracle:thin:@localhost:1521/xe
+#    username: scott
+#    password: tiger
+#
+#--- #mybatis mapper xml
+#mybatis:
+#  mapper-locations: classpath:sqlmapper/*.xml
+#  configuration.map-underscore-to-camel-case: true

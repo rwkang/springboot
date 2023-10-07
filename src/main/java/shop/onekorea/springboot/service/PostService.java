@@ -1,23 +1,65 @@
 package shop.onekorea.springboot.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import shop.onekorea.springboot.dto.RequestPostDto;
 import shop.onekorea.springboot.entity.Post;
+import shop.onekorea.springboot.mapper.PostMapper;
 import shop.onekorea.springboot.repository.PostRepository;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
 
+    // to JPA
     private final PostRepository postRepository;
 
-    public List<Post> postList() {
-        return postRepository.findAll();
+    // to mybatis
+    private final PostMapper postMapper;
+
+    public Post getReferenceByIdService() {
+        Post post = postRepository.getReferenceById("1");
+        return post;
+    }
+
+
+    // insert into ~
+    public Post insertPostService(Post post) {
+        Post postInserted = postRepository.save(post);
+        return postInserted;
+    }
+
+    public Post updateService(Post post) {
+        return postRepository.save(post);
+    }
+
+//    public Post getTopByCreatedAtOrderByCreatedAtService() {
+//        Post postTopByCreatedAtOrderByCreatedAt = postRepository.();
+//        return postTopByCreatedAtOrderByCreatedAt;
+//    }
+
+//    public Post getPostByIdService(String postId) {
+//        return postRepository.getPostById(postId);
+//    }
+
+//    public Post getPost(String postId) {
+//        Post post = postRepository.findById(UUID.fromString(postId));
+//        return post;
+//    }
+
+    public List<Post> getPostListService() {
+        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[1];
+        System.err.println(stackTraceElement.getClassName() + " : " + stackTraceElement.getLineNumber());
+
+        // to JPA
+         return postRepository.findAll();
+//        return postRepository.findAll(Pageable.ofSize(size).withPage(page).toList());
+
+        // to mybatis
+//        return postMapper.listPost();
 
         /**
          * A. 서버를 실행하고,
@@ -69,4 +111,6 @@ public class PostService {
 //                );
 
     }
+
+
 }

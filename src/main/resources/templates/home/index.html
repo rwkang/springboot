@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>springboot</title>
+    <meta http_equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <!--    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>-->
+    <!--    <script type="text/javascript" src="/js/jquery-1.11.0.js"></script>-->
+    <link rel="icon" href="/boximages/25.png">
+    <!--    <script type="text/javascript">-->
+    <!--        $.ajax({-->
+    <!--            async : false,-->
+    <!--            cache : false,-->
+    <!--            type : "get",-->
+    <!--            url : "/isLocalhost",-->
+    <!--            success : function  (result) {-->
+    <!--                // window.title="항목 관리 시스템" + result;-->
+    <!--                document.title="Spring Boot 시스템" + result;-->
+    <!--                // alert(window.title);-->
+    <!--            }-->
+    <!--        });-->
+    <!--    </script>-->
+</head>
+<body>
+<h1>스프링 부트 시작...</h1>
+<div id="list">
+
+</div>
+<!--<a id="btn" type="button" th:href="@{/create/weather?date='2023-09-30'}">조회하기1</a>-->
+<a id="btn" type="button" th:href="@{/posts/list}">조회하기</a>
+<!--<button id="btn" type="button" th:href="@{/posts/list}">조회하기</button> 버튼 태그는 안 먹네...-->
+
+<!--<script type="text/javascript" src="/js/postList.js"></script>-->
+
+</body>
+</html>

@@ -22,8 +22,8 @@ repositories {
 }
 
 dependencies {
-//    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.1.4'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.1.4'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
     implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.1.4'
@@ -42,15 +42,48 @@ dependencies {
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
 //    runtimeOnly 'org.postgresql:postgresql:42.6.0'
 
-    // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
+    // 2023.09.26 Conclusion. 오라클은 결국 안 되네...
+    // https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8
+//    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+//    implementation 'com.oracle.database.jdbc:ojdbc8:23.2.0.0'
 
+
+
+    // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+    // implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+
+    // https://mvnrepository.com/artifact/com.google.guava/guava
+    implementation 'com.google.guava:guava:32.1.2-jre'
+
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // * 2023.09.27 Conclusion. 테스트에서는 @RequiredArgsConstructor => final PostRepository postRepository; 이거 사용 불가
+    // testImplementation 'org.projectlombok:lombok:1.18.26'
+    testImplementation 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // https://mvnrepository.com/artifact/org.jsoup/jsoup
+    implementation 'org.jsoup:jsoup:1.16.1'
+
+    // 2023.10.01 Added. Jasypt Spring Boot Start => JWT Refresh Token 까지 3강 중 1강 00:00 시작.
+    // https://www.youtube.com/watch?v=3CY2pk-Ug10&list=PLeMeDIV7bypvyxWv7eIUZubmfx9W-Jjdg&index=4&t=981s
+    // https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
+
+    // 2023.10.04 Added. Spring Security => JWT Refresh Token 까지 3강 중 1강 21:00.
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+
 }
 
 tasks.named('test') {
